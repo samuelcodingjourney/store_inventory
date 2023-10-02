@@ -1,6 +1,18 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    <nav class="navbar bg-body-tertiary">
+    <div class="container-fluid">
+        <span class="navbar-text">
+            Gregorius Samuel Hutahaean
+        </span>
+        <a href="{% url 'main:logout' %}">
+            <button>
+                Logout
+            </button>
+        </a>
+    </div>
+    </nav>
     <h1>Shopping List Page</h1>
 
     <h5>Name:</h5>
@@ -23,6 +35,18 @@
                 <td>{{product.name}}</td>
                 <td>{{product.amount}}</td>
                 <td>{{product.description}}</td>
+                <td>
+                    <a href="{% url 'main:edit_product' product.pk %}">
+                        <button>
+                            Edit
+                        </button>
+                    </a>
+                    <a href="{% url 'main:delete_product' product.pk %}">
+                          <button>
+                              Delete
+                          </button>
+                      </a>
+                </td>
             </tr>
         {% endfor %}
     </table>
@@ -34,10 +58,12 @@
             Add New Product
         </button>
     </a>
-    <a href="{% url 'main:logout' %}">
-        <button>
-            Logout
-        </button>
-    </a>
     
     {% endblock content %}
+
+
+
+
+
+
+
