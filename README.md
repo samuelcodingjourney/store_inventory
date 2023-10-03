@@ -47,3 +47,10 @@ Assignment 5:
 Then, I created the Navbar. The navbar contains my name as well as the logout option. As seen in first and second picture below.
 Then, I added the edit function to the application by creating edit_product method to edit the products and then creating its own HTML file in main/templates subdirectory. After that, importing the function to urls.py and add the path to the urlpatterns list. The same goes to the delete function for my application. The pictures can be seen below. 
 Lastly, I modified the main page, login, register, edit product, and add new product page. 
+![Screenshot (550)](https://github.com/samuelcodingjourney/store_inventory/assets/94734973/c2ad1a6e-f0a2-4401-b2fd-6fd66dc41e14)
+![Screenshot (551)](https://github.com/samuelcodingjourney/store_inventory/assets/94734973/0b28697f-cf7e-490b-833a-c0e5eae96270)
+![Screenshot (552)](https://github.com/samuelcodingjourney/store_inventory/assets/94734973/400242e6-c761-4912-9207-d7b10376dc46)
+![Screenshot (553)](https://github.com/samuelcodingjourney/store_inventory/assets/94734973/520394c8-37ad-4d9a-8bb7-9cba4d8c7b62)
+![Screenshot (554)](https://github.com/samuelcodingjourney/store_inventory/assets/94734973/6b34fbfd-9772-492e-ba10-5152c4a8a6f0)
+![Screenshot (555)](https://github.com/samuelcodingjourney/store_inventory/assets/94734973/540ce4ba-0d43-45de-ab07-8a0b33867628)
+![Screenshot (556)](https://github.com/samuelcodingjourney/store_inventory/assets/94734973/644d600e-83b4-44e1-a54e-7e34fb17d996)
