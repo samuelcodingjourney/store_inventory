@@ -7,28 +7,51 @@
 {% block content %}
 
 <div class = "login">
+    
+    <h1>Login to Store Inventory</h1>  
 
-    <h1>Login</h1>
+        <form method="POST" >  
+            {% csrf_token %}  
+            <section class="h-100 bg-yellow">
+                <div class="container py-5 h-100">
+                  <div class="row d-flex justify-content-center align-items-center h-100">
+                    <div class="col">
+                      <div class="card card-registration my-4">
+                        <div class="row g-0">
+                          <div class="col-xl-6 d-none d-xl-block">
+                            <img src="https://images.ctfassets.net/pdf29us7flmy/64AFKfwcGnhYYtbOeZkL2u/786f120c5af6db9e8f1df9d5bf982d4b/GettyImages-142227958_optimized.jpg"
+                              alt="Sample photo" class="img-fluid"
+                              style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem;" />
+                          </div>
+                          <div class="col-xl-6">
+                            <div class="card-body p-md-5 text-black">
+                              <h3 class="mb-5 text-uppercase">User Login Form</h3>
+              
+                              <div class="row">
+                                <div class="form-outline mb-4">
+                                    <input type="text" id="form3Example1m" name="username" class="form-control form-control-lg" />
+                                    <label class="form-label" for="form3Example1m">Username</label>
+                                </div>
+            
+                              <div class="form-outline mb-4">
+                                <input type="password" id="form3Example9" name="password" class="form-control form-control-lg" />
+                                <label class="form-label" for="form3Example9">Password</label>
+                              </div>
+                              <input class="btn login_btn" type="submit" name="submit" value="Login"/>
+              
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+        </form>
+        
+</div>
+</div>
 
-    <form method="POST" action="">
-        {% csrf_token %}
-        <table>
-            <tr>
-                <td>Username: </td>
-                <td><input type="text" name="username" placeholder="Username" class="form-control"></td>
-            </tr>
-                    
-            <tr>
-                <td>Password: </td>
-                <td><input type="password" name="password" placeholder="Password" class="form-control"></td>
-            </tr>
-
-            <tr>
-                <td></td>
-                <td><input class="btn login_btn" type="submit" value="Login"></td>
-            </tr>
-        </table>
-    </form>
 
     {% if messages %}
         <ul>
@@ -37,7 +60,6 @@
             {% endfor %}
         </ul>
     {% endif %}     
-        
     Don't have an account yet? <a href="{% url 'main:register' %}">Register Now</a>
 
 </div>

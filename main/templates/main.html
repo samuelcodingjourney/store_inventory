@@ -1,18 +1,5 @@
 {% extends 'base.html' %}
-
 {% block content %}
-    <nav class="navbar bg-body-tertiary">
-    <div class="container-fluid">
-        <span class="navbar-text">
-            Gregorius Samuel Hutahaean
-        </span>
-        <a href="{% url 'main:logout' %}">
-            <button>
-                Logout
-            </button>
-        </a>
-    </div>
-    </nav>
     <h1>Shopping List Page</h1>
 
     <h5>Name:</h5>
@@ -20,23 +7,19 @@
 
     <h5>Class:</h5>
     <p>{{class}}</p>
-    <table>
-        <tr>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Description</th>
-            <th>Date Added</th>
-        </tr>
     
         {% comment %} Below is how to show the product data {% endcomment %}
-    
-        {% for product in products %}
-            <tr>
-                <td>{{product.name}}</td>
-                <td>{{product.amount}}</td>
-                <td>{{product.description}}</td>
-                <td>
-                    <a href="{% url 'main:edit_product' product.pk %}">
+    <div class="products">
+        <div class="container">
+            <div class="row gy-3">
+                {% for product in products %}
+                <div class="col-md-4">
+                <div class="card text-white bg-info mb-3">
+                    <div class="card-header">{{product.name}}</div>
+                    <div class="card-body">
+                      <h5 class="card-title">{{product.amount}}</h5>
+                      <p class="card-text">{{product.description}}</p>
+                      <a href="{% url 'main:edit_product' product.pk %}">
                         <button>
                             Edit
                         </button>
@@ -46,10 +29,14 @@
                               Delete
                           </button>
                       </a>
-                </td>
-            </tr>
-        {% endfor %}
-    </table>
+                    </div>
+                  </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
     <h5>Last login session: {{ last_login }}</h5>
     <br />
     

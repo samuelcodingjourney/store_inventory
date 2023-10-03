@@ -1,19 +1,56 @@
 {% extends 'base.html' %} 
-
+<style>
+    div.products:last-child {
+                background-color:yellow;
+            }
+</style>
 {% block content %}
-<h1>Add New Product</h1>
+<div class="container min-vh-100 d-flex justify-content-center align-items-center">
 
-<form method="POST">
-    {% csrf_token %}
-    <table>
-        {{ form.as_table }}
-        <tr>
-            <td></td>
-            <td>
-                <input type="submit" value="Add Product"/>
-            </td>
-        </tr>
-    </table>
-</form>
+    <form method="POST">
+        {% csrf_token %}
+
+
+        <div class="form-body">
+            <div class="row">
+                <div class="form-holder">
+                    <div class="form-content">
+                        <div class="form-items">
+                            <h3>Add New Product</h3>
+                            <p>Fill in the data below.</p>
+                            <form class="requires-validation" novalidate>
+    
+                                <div class="col-md-12">
+                                   <input class="form-control" type="text" name="name" placeholder="Product Name" required>
+                                   <div class="valid-feedback">Product Name is valid!</div>
+                                   <div class="invalid-feedback">Product Name cannot be blank!</div>
+                                </div>
+    
+                                <div class="col-md-12">
+                                    <input class="form-control" type="text" name="amount" placeholder="Amount" required>
+                                     <div class="valid-feedback">Amount field is valid!</div>
+                                     <div class="invalid-feedback">Amount field cannot be blank!</div>
+                                </div>
+    
+    
+                               <div class="col-md-12">
+                                  <input class="form-control" type="description" name="description" placeholder="Description" required>
+                                   <div class="valid-feedback">Password field is valid!</div>
+                                   <div class="invalid-feedback">Password field cannot be blank!</div>
+                               </div>
+                                <div class="form-button mt-3">
+                                    <button id="submit" type="submit" class="btn btn-primary">Add New Product</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </form>
 
 {% endblock %}
