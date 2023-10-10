@@ -7,7 +7,7 @@
 
     <h5>Class:</h5>
     <p>{{class}}</p>
-                <table id="product_table"></table>
+    <table id="product_table"></table>
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -23,8 +23,8 @@
                             <input type="text" class="form-control" id="name" name="name"></input>
                         </div>
                         <div class="mb-3">
-                            <label for="amount" class="col-form-label">Amount:</label>
-                            <input type="number" class="form-control" id="amount" name="amount"></input>
+                            <label for="price" class="col-form-label">Price:</label>
+                            <input type="number" class="form-control" id="price" name="price"></input>
                         </div>
                         <div class="mb-3">
                             <label for="description" class="col-form-label">Description:</label>
@@ -39,7 +39,6 @@
             </div>
         </div>
     </div>
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Product by AJAX</button>
             
 
     <h5>Last login session: {{ last_login }}</h5>
@@ -47,42 +46,44 @@
     
     <script>
         async function getProducts() {
-            return fetch("{% url 'main:get_product_json' %}").then((res) => res.json())
-        }
+        return fetch("{% url 'main:get_product_json' %}").then((res) => res.json())
+    }
         async function refreshProducts() {
-            document.getElementById("product_table").innerHTML = ""
-            const products = await getProducts()
-            let htmlString = `<div class="products">
+        document.getElementById("product_table").innerHTML = ""
+        const products = await getProducts()
+        let htmlString = `<div class="products">
         <div class="container">
             <div class="row gy-3">`
-            products.forEach((item) => {
-                htmlString += `\n<div class="col-md-4">
+        products.forEach((item) => {
+            htmlString += `\n<div class="col-md-4">
                 <div class="card text-white bg-info mb-3">
                     <div class="card-header">${item.fields.name}</div>
                     <div class="card-body">
                       <h5 class="card-title">${item.fields.amount}</h5>
-                      <p class="card-text">${item.fields.description}</p
+                      <p class="card-text">${item.fields.description}</p>
                     </div>
                   </div>
                 </div>` 
-            })
-            htmlString+= `\n</div>
+        })
+        htmlString += `\n</div>
                 </div>
                 </div>`
-            document.getElementById("product_table").innerHTML = htmlString
-        }
-    
-        refreshProducts()
+        document.getElementById("product_table").innerHTML = htmlString
+    }
+
+    refreshProducts()
         function addProduct() {
-            fetch("{% url 'main:add_product_ajax' %}", {
-                method: "POST",
-                body: new FormData(document.querySelector('#form'))
-            }).then(refreshProducts)
-    
-            document.getElementById("form").reset()
-            return false
-        }
+        fetch("{% url 'main:add_product_ajax' %}", {
+            method: "POST",
+            body: new FormData(document.querySelector('#form'))
+        }).then(refreshProducts)
+
+        document.getElementById("form").reset()
+        return false
         document.getElementById("button_add").onclick = addProduct
+
+    }
+
     </script>
     {% endblock content %}
 
