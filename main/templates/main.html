@@ -23,8 +23,8 @@
                             <input type="text" class="form-control" id="name" name="name"></input>
                         </div>
                         <div class="mb-3">
-                            <label for="price" class="col-form-label">Price:</label>
-                            <input type="number" class="form-control" id="price" name="price"></input>
+                            <label for="amount" class="col-form-label">Amount:</label>
+                            <input type="number" class="form-control" id="amount" name="amount"></input>
                         </div>
                         <div class="mb-3">
                             <label for="description" class="col-form-label">Description:</label>
@@ -40,7 +40,7 @@
         </div>
     </div>
             
-
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Product by AJAX</button>
     <h5>Last login session: {{ last_login }}</h5>
     <br />
     
@@ -80,9 +80,9 @@
 
         document.getElementById("form").reset()
         return false
-        document.getElementById("button_add").onclick = addProduct
 
     }
+    document.getElementById("button_add").onclick = addProduct
 
     </script>
     {% endblock content %}

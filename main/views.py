@@ -14,6 +14,9 @@ import datetime
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.models import User
+import json
+from django.http import JsonResponse
 @login_required(login_url='/login')
 def show_main(request):
     products = Product.objects.filter(user=request.user)
@@ -40,7 +43,7 @@ def show_xml(request):
     data = Product.objects.all()
     return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
 def show_json(request):
-    data = Product.objects.all()
+    data = Product.objects.filter(user=request.user)
     return HttpResponse(serializers.serialize("json", data), content_type="application/json")
 def show_xml_by_id(request, id):
     data = Product.objects.filter(pk=id)
@@ -53,6 +56,7 @@ def register(request):
 
     if request.method == "POST":
         form = UserCreationForm(request.POST)
+        print(form)
         if form.is_valid():
             form.save()
             messages.success(request, 'Your account has been successfully created!')
@@ -100,7 +104,7 @@ def delete_product(request, id):
     # Return to the main page
     return HttpResponseRedirect(reverse('main:show_main'))
 def get_product_json(request):
-    product_item = Product.objects.all()
+    product_item = Product.objects.filter(user=request.user)
     return HttpResponse(serializers.serialize('json', product_item))
 @csrf_exempt
 def add_product_ajax(request):
@@ -116,3 +120,33 @@ def add_product_ajax(request):
         return HttpResponse(b"CREATED", status=201)
 
     return HttpResponseNotFound()
+
+@csrf_exempt
+def create_product_flutter(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+
+        new_product = Product.objects.create(
+            user = request.user,
+            name = data["name"],
+            amount = int(data["amount"]),
+            description = data["description"]
+        )
+
+        new_product.save()
+
+        return JsonResponse({"status": "success"}, status=200)
+    else:
+        return JsonResponse({"status": "error"}, status=401)
+
+@csrf_exempt
+def create_register_flutter(request):
+    form = UserCreationForm()
+    if request.method == "POST":
+        data = json.loads(request.body)
+        user = User.objects.create_user(username= data['username'], password=data['password'])
+        user.save()
+        messages.success(request, 'Your account has been successfully created!')
+        return JsonResponse({"status": "success"}, status=200)
+    else:
+        return JsonResponse({"status": "error"}, status=401)
